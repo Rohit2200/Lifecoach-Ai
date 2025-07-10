@@ -11,9 +11,8 @@ health_agent = Agent(
     ),
     allow_delegation=False,
     verbose=True,
-    memory=True,  # ✅ MUST be boolean only
+    memory=True,  
     llm=llm,
 )
 
-# ✅ Attach memory after creation
 health_agent.memory = get_agent_memory("health")
