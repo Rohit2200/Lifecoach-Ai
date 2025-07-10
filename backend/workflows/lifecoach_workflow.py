@@ -12,7 +12,7 @@ def generate_full_lifecoach_plan(goal: str, income: str, learning_goal: str, dur
     motivation_outputs = []
 
     for day in range(1, duration + 1):
-        # Health: concise and structured
+        # Health
         health_task = Task(
             description=(
                 f"Day {day}: Give 3–4 bullet points with health tips for the goal '{goal}'. "
