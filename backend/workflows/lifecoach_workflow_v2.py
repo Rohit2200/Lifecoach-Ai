@@ -14,12 +14,12 @@ def generate_full_lifecoach_plan(
     duration: int = 1,
     preferences: dict = {}
 ):
-    # 🧠 Extract optional preferences
+    #  Extract optional preferences
     diet_pref = preferences.get("diet", "no dietary preference")
     workout_pref = preferences.get("workout_type", "no specific workout type")
     learning_style = preferences.get("learning_style", "no specific learning style")
 
-    # 👇 Subtask prompts (compressed + bullet-based)
+    #  Subtask prompts (compressed + bullet-based)
     health_task = Task(
         description=(
             f"Give 3–4 concise health tips in bullet points for goal: '{goal}' "
@@ -58,7 +58,7 @@ def generate_full_lifecoach_plan(
         agent=finance_agent
     )
 
-    # 🧠 High-level manager task
+    #  High-level manager task
     high_level_task = Task(
         description=(
             f"The user wants a {duration}-day improvement plan.\n"
@@ -73,7 +73,7 @@ def generate_full_lifecoach_plan(
         context=[health_task, learning_task, motivation_task, finance_task]
     )
 
-    # ✅ Launch CrewAI
+    #  Launch CrewAI
     crew = Crew(
         agents=[manager_agent, health_agent, learning_agent, motivation_agent, finance_agent],
         tasks=[high_level_task],
