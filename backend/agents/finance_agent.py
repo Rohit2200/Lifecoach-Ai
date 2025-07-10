@@ -1,4 +1,3 @@
-# backend/agents/finance_agent.py
 
 from crewai import Agent
 from backend.config import llm
