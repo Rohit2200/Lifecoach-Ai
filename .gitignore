@@ -1,0 +1,23 @@
+# Byte-compiled / virtualenv
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+.venv/
+env/
+venv/
+.idea/
+.vscode/
+
+# Streamlit & cache
+.streamlit/
+.cache/
+*.log
+
+# System
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.key
