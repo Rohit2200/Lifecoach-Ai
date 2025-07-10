@@ -1,11 +1,10 @@
-# frontend/app.py
 
 import streamlit as st
 import requests
 
 st.set_page_config(page_title="LifeCoach AI", page_icon="🧠")
 
-# Inject custom CSS
+# custom CSS
 st.markdown("""
 <style>
     .main { background-color: #111111; color: #f0f0f0; }
