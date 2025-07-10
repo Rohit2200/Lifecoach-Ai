@@ -1,4 +1,3 @@
-# backend/workflows/lifecoach_workflow_v2.py
 
 from crewai import Crew, Task
 from backend.agents.manager_agent import manager_agent
