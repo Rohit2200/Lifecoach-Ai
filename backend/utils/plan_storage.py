@@ -1,4 +1,3 @@
-# backend/utils/plan_storage.py
 
 import os
 import json
@@ -41,7 +40,6 @@ def list_saved_plans(user_id: str) -> list[str]:
     directory = get_user_plan_dir(user_id)
     return [f[:-5] for f in os.listdir(directory) if f.endswith(".json")]
 
-# backend/utils/plan_storage.py (append at the end)
 
 def delete_plan(user_id: str, plan_name: str) -> bool:
     """
