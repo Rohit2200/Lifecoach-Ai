@@ -1,4 +1,3 @@
-# backend/main.py
 
 from fastapi import FastAPI, Request, HTTPException
 from pydantic import BaseModel
@@ -18,7 +17,7 @@ from crewai import Task
 
 app = FastAPI()
 
-# ✅ Input models
+# Input models
 class LifePlanInput(BaseModel):
     goal: str
     income: str
@@ -31,7 +30,7 @@ class AgentChatInput(BaseModel):
     agent: str
     message: str
 
-# ✅ Keywords for basic input validation
+#  Keywords for basic input validation
 topic_keywords = {
     "health": ["workout", "diet", "exercise", "fitness", "calorie", "protein", "weight", "meal"],
     "finance": ["budget", "income", "saving", "invest", "money", "loan", "expense", "debt"],
@@ -39,7 +38,7 @@ topic_keywords = {
     "motivation": ["motivate", "lazy", "discipline", "focus", "inspire", "consistency", "mindset"]
 }
 
-# ✅ Generate plan
+#  Generate plan
 @app.post("/life-plan")
 def life_plan(input: LifePlanInput, request: Request):
     version = request.query_params.get("v2", "false").lower()
@@ -70,7 +69,7 @@ def life_plan(input: LifePlanInput, request: Request):
 
     return result
 
-# ✅ Chat with individual agent
+#  Chat with individual agent
 @app.post("/agent-chat")
 def agent_chat(input: AgentChatInput):
     agent_map = {
@@ -107,21 +106,21 @@ def agent_chat(input: AgentChatInput):
 
     return {"response": response}
 
-# ✅ Load chat history
+#  Load chat history
 @app.get("/chat-history/{user_id}")
 def get_chat_history(user_id: str):
     return load_chat(user_id)
 
-# ✅ Clear chat history
+#  Clear chat history
 @app.delete("/clear-chat/{user_id}")
 def clear_chat_history(user_id: str):
     deleted = clear_chat(user_id)
     if deleted:
-        return {"message": "✅ Chat history cleared."}
+        return {"message": " Chat history cleared."}
     else:
         raise HTTPException(status_code=404, detail="❌ No chat history found.")
 
-# ✅ Load a saved plan
+#  Load a saved plan
 @app.get("/load-plan/{user_id}/{plan_name}")
 def load_named_plan(user_id: str, plan_name: str):
     plan = load_plan(user_id, plan_name)
@@ -130,20 +129,20 @@ def load_named_plan(user_id: str, plan_name: str):
     else:
         raise HTTPException(status_code=404, detail="❌ Plan not found.")
 
-# ✅ List saved plan names
+#  List saved plan names
 @app.get("/load-plan-names/{user_id}")
 def get_plan_names(user_id: str):
     plans = list_saved_plans(user_id)
     return {"plans": plans}
 
-# ✅ Delete saved plan
+#  Delete saved plan
 @app.delete("/delete-plan/{user_id}/{plan_name}")
 def delete_saved_plan(user_id: str, plan_name: str):
     if delete_plan(user_id, plan_name):
         return {"message": f"✅ Plan '{plan_name}' deleted."}
     raise HTTPException(status_code=404, detail="❌ Plan not found.")
 
-# ✅ Update saved plan
+#  Update saved plan
 @app.put("/update-plan/{user_id}/{plan_name}")
 def update_saved_plan(user_id: str, plan_name: str, updated_plan: dict):
     if update_plan(user_id, plan_name, updated_plan):
